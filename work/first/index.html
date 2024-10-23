@@ -58,9 +58,9 @@
 // 第3問  id='q3'の要素をクリックしたらこの要素の前後とこの要素内の前後にテキストを挿入せよ。
     $('#q3').click(function() {
       $(this).prepend('DOMの中の前')
-              .append('DOMの中の後')
-              .before('DOMの前')
-              .after('DOMの後')
+      $(this).append('DOMの中の後')
+      $(this).before('DOMの前')
+      $(this).after('DOMの後')
     })
 // 第4問  id='q4'の要素をクリックしたらこの要素にlargeというクラスを付与せよ。
     $('#q4').click(function(){
@@ -71,7 +71,7 @@
       $(this).animate({
         'marginTop' : 100,
         'marginLeft': 100
-    }, 2000)
+      }, 2000)
     })
 // 第6問  id='q6'の子要素をクリックしたら、その要素のインデックス（何番目か）をconsole.log()とalert()を用いて表示させよ。
     $('#q6').click(function(){

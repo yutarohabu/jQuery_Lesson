@@ -64,14 +64,10 @@
       $('.menu__list li').hover(dropOpen,dropClose)
 
       function dropOpen(){
-        console.log('open')
-        console.log(this)
-        $(this).children('.menu__list__childList').stop(true,false).slideDown()
+        $(this).children('.menu__list__childList').stop(true, false).slideDown()
       }
       function dropClose(){
-        console.log('close')
-        console.log(this)
-        $(this).children('.menu__list__childList').stop(true,false).slideUp()
+        $(this).children('.menu__list__childList').stop(true, false).slideUp()
       }
     </script>
   </body>
