@@ -27,13 +27,16 @@
       getOrRun(res)
 
       $('#catch').click(function(){
-        let randomBallNum = Math.floor(Math.random() * 3);
+        let randomBallNum = Math.floor(Math.random() * 4);
           randomBallNum += 1
+          if(randomBallNum === 1){
+            randomBallNum += 1
+          }
             $.ajax({ 
             url: `https://pokeapi.co/api/v2/item/${randomBallNum}`,
             method: 'GET'
             }).done(function(res) { 
-              let randomNum = Math.floor(Math.random() * 2);
+              let randomNum = Math.floor(Math.random() * 3);
               if(randomBallNum === 1){
                 randomNum = 0
               }
@@ -43,6 +46,9 @@
                 break;
                 case 1:
                   failed()
+                break;
+                case 2:
+                  got(res)
                 break;
               }
             }).fail(function(err) { 
