@@ -61,6 +61,14 @@
       // ・連続で何回もホバーした時、手を止めているのにリストがスライドし続けないか
       // ・出てきたリストの上にホバーできるか
       // ※必ずレビュー前に上記挙動が問題ないか確認すること
+      $('.menu__list li').hover(dropOpen,dropClose)
+
+      function dropOpen(){
+        $(this).children('.menu__list__childList').stop(true, false).slideDown()
+      }
+      function dropClose(){
+        $(this).children('.menu__list__childList').stop(true, false).slideUp()
+      }
     </script>
   </body>
 </html>

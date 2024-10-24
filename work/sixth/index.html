@@ -16,6 +16,127 @@
   <script src="../../common/js/jquery.js"></script>
   <script>
     // 回答はここに書いてね
+
+  $('.search-btn').click(function(){
+    let randomPokemonNum = Math.floor(Math.random() * 1025)
+    randomPokemonNum += 1
+    $.ajax({ 
+      url: `https://pokeapi.co/api/v2/pokemon/${randomPokemonNum}`,
+      method: 'GET'
+    }).done(function(res) { 
+      getOrRun(res)
+
+      $('#catch').click(function(){
+        let randomBallNum = Math.floor(Math.random() * 4);
+          randomBallNum += 1
+          if(randomBallNum === 1){
+            randomBallNum += 1
+          }
+            $.ajax({ 
+            url: `https://pokeapi.co/api/v2/item/${randomBallNum}`,
+            method: 'GET'
+            }).done(function(res) { 
+              let randomNum = Math.floor(Math.random() * 3);
+              if(randomBallNum === 1){
+                randomNum = 0
+              }
+              switch (randomNum) {
+                case 0:
+                  got(res)
+                break;
+                case 1:
+                  failed()
+                break;
+                case 2:
+                  got(res)
+                break;
+              }
+            }).fail(function(err) { 
+              console.log(err)
+            })
+      })
+
+    }).fail(function(err) { 
+      
+    });
+  })
+
+  function getOrRun(res){
+    console.log(res)
+      let encountHtml =
+      `
+      <div class="nameImg">
+        <p class="name">${res.name}</p>
+        <div>
+          <img class="img" src="${res.sprites.front_default}" alt="${res.name}">
+        </div>
+        <div>
+          <button class="btn" id="catch">捕まえる</button>
+          <button class="btn" id="run" data-js="reset">逃げる</button>
+        </div>
+      </div>
+      `
+      $('#wrapper').html(encountHtml)
+      $('.search-btn').hide()
+      $('#wrapper').show()
+
+      $('#run').click(function(){
+          const value = $('#run').data('js')
+          console.log(value)
+          if(value == 'reset'){
+            console.log('reset')
+            location.reload()
+          }
+        })
+  }
+
+  function got(res){
+              console.log(res)
+              let doneHtml =
+              `
+              <div class=.got">
+                <p class="name">ゲットしました</p>
+                <div>
+                  <img class="img" src="${res.sprites.default}" alt="モンスターボール">
+                </div>
+                <button class="btn" data-js="reset">戻る</button>
+              </div>
+              `
+              $('#wrapper').html(doneHtml)
+              $('.nameImg').hide()
+              $('#wrapper').show()
+
+            $('.btn').click(function(){
+              const value = $('.btn').data('js')
+              console.log(value)
+              if(value == 'reset'){
+                console.log('reset')
+                location.reload()
+              }
+              })
+  }
+
+  function failed(){
+    let failHtml =
+          `
+          <div class="wasRuned">
+            <p class="text">逃げられてしまった...</p>
+            <button class="btn mt" data-js="reset">戻る</button>
+          </div>
+          `
+          $('#wrapper').html(failHtml)
+          $('.got').hide()
+          $('#wrapper').show()
+
+          $('.btn').click(function(){
+            const value = $('.btn').data('js')
+            console.log(value)
+            if(value == 'reset'){
+              console.log('reset')
+              location.reload()
+            }
+          })
+  }
   </script>
 </body>
 </html>

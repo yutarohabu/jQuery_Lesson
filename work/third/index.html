@@ -30,6 +30,12 @@
       // .eq() 引数に応じたindexの要素を指定します。
       // .addClass() クラスを追加します。
       // .removeClass() クラスを削除します。
+      $('.nav li').click(function(){
+        console.log(this)
+        var target = $(this).index()
+        $('.contents li').addClass('is-hidden')
+        $('.contents li').eq(target).removeClass('is-hidden')
+      })
     </script>
   </body>
 </html>

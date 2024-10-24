@@ -27,6 +27,18 @@
       // .click() クリック時のイベントを登録する。
       // .fadeIn() 一定時間かけてフェードインする。
       // .fadeOut() 一定時間かけてフェードアウトする。
+
+      $('.modal-show').click(modalOpen)
+
+      $('.modal-close').click(modalClose)
+
+      function modalOpen(){
+        $('.modal').fadeIn(5000)
+      }
+
+      function modalClose(){
+        $('.modal').fadeOut(5000)
+      }
     </script>
   </body>
 </html>
